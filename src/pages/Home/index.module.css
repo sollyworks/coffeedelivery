@@ -1,0 +1,67 @@
+.mainSection {
+  padding: 96px 0px;
+}
+
+.content {
+  width: 100%;
+  max-width: 588px;
+}
+
+.title {
+  margin-bottom: 3.75rem;
+
+  h1 {
+    margin-bottom: 1rem;
+  }
+
+  p {
+    font-size: 1.25rem;
+    line-height: 130%;
+  }
+}
+
+.advantages {
+  ul {
+    display: grid;
+    grid-template-columns: 0.8fr 1fr;
+    gap: 20px;
+
+    li {
+      width: fit-content;
+      display: flex;
+      align-items: center;
+      justify-content: start;
+      gap: 0.75rem;
+
+      .icon {
+        display: flex;
+        width: 2rem;
+        height: 2rem;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+      }
+
+      .shopping {
+        background-color: var(--yellow-dark);
+      }
+
+      .package {
+        background-color: var(--base-text);
+      }
+
+      .timer {
+        background-color: var(--yellow);
+      }
+
+      .coffee {
+        background-color: var(--purple);
+      }
+    }
+  }
+}
+
+.mainImage {
+  width: 100%;
+  max-width: 476px;
+}
