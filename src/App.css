@@ -79,3 +79,26 @@ h4 {
 h5 {
   font-size: 1.125rem;
 }
+
+.container {
+  width: 100%;
+  max-width: calc(1120px + 2 * 1rem);
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.flexContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+li {
+  list-style: none;
+}
+
+img {
+  width: 100%;
+  display: block;
+}
