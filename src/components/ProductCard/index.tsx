@@ -2,6 +2,7 @@ import styles from "./index.module.css";
 import { Product } from "../../types/product";
 import { coffeeImages } from "../../assets";
 import { formatCurrency } from "../../utils/formatCurrency";
+import { QuantityInput } from "../QuantityInput";
 
 export function ProductCard({ coffee }: { coffee: Product }) {
   return (
@@ -26,9 +27,7 @@ export function ProductCard({ coffee }: { coffee: Product }) {
         <span className={styles.price}>
           R$ <strong>{formatCurrency(coffee.price)}</strong>
         </span>
-        <div>
-          <button type="button">Comprar</button>
-        </div>
+        <QuantityInput />
       </div>
     </div>
   );
