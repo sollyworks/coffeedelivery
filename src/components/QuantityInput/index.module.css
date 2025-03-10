@@ -1,0 +1,68 @@
+.quantityForm {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.quantityWrapper {
+  background-color: var(--base-button);
+  width: 100%;
+  max-width: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px;
+  border-radius: 6px;
+
+  .controlButton {
+    background-color: transparent;
+    border: none;
+    width: 14px;
+    height: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--purple);
+    transition: color 0.2s;
+
+    &:hover {
+      color: var(--purple-dark);
+    }
+  }
+
+  input {
+    background-color: transparent;
+    border: none;
+    text-align: center;
+    outline: none;
+    appearance: none;
+
+    &::-webkit-inner-spin-button,
+    &::-webkit-outer-spin-button {
+      appearance: none;
+    }
+  }
+}
+
+.cartButton {
+  border: none;
+  outline: none;
+  background-color: var(--purple-dark);
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  border-radius: 6px;
+
+  &:hover {
+    background-color: var(--purple);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+    background-color: var(--base-label);
+  }
+}
