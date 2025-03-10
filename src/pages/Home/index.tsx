@@ -1,8 +1,12 @@
 import styles from "./index.module.css";
 import { Coffee, Package, ShoppingCart, Timer } from "@phosphor-icons/react";
 import mainImage from "../../assets/main-store-image.png";
+import { ProductCard } from "../../components/ProductCard";
+import { coffees } from "../../mocks/coffees";
 
 export function Home() {
+  const products = coffees;
+
   return (
     <>
       <section className={styles.mainSection}>
@@ -54,6 +58,11 @@ export function Home() {
       <section className={styles.coffeesSection}>
         <div className="container">
           <h2>Nossos cafés</h2>
+          <div className={styles.coffeesWrapper}>
+            {products.map((product) => (
+              <ProductCard key={product.id} coffee={product} />
+            ))}
+          </div>
         </div>
       </section>
     </>

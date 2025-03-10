@@ -1,0 +1,82 @@
+.card {
+  background-color: var(--base-card);
+  width: 100%;
+  max-width: 256px;
+  padding: 20px 24px;
+  position: relative;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 36px;
+  border-bottom-left-radius: 36px;
+  border-bottom-right-radius: 6px;
+}
+
+.imageContainer {
+  width: 100%;
+  max-width: 140px;
+  height: 120px;
+}
+
+.coffeeImage {
+  width: 140px;
+  position: absolute;
+  top: -24px;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.tags {
+  display: flex;
+  gap: 4px;
+  justify-content: center;
+  margin-bottom: 1rem;
+
+  span {
+    background-color: var(--yellow-light);
+    font-size: 0.625rem;
+    line-height: 130%;
+    text-transform: uppercase;
+    padding: 4px 8px;
+    border-radius: 100px;
+    color: var(--yellow-dark);
+    font-weight: bold;
+    width: fit-content;
+  }
+}
+
+.titleWrapper {
+  h2 {
+    font-size: 1.25rem;
+    line-height: 130%;
+    margin-bottom: 0.5rem;
+    text-align: center;
+    color: var(--base-subtitle);
+  }
+
+  p {
+    font-size: 0.875rem;
+    line-height: 130%;
+    text-align: center;
+    color: var(--base-label);
+  }
+}
+
+.footer {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+
+  .price {
+    font-size: 0.875rem;
+    line-height: 130%;
+    font-family: var(--family-baloo);
+
+    strong {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+  }
+}
