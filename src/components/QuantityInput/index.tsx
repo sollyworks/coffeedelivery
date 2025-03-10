@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./index.module.css";
-import { ShoppingCart } from "@phosphor-icons/react";
+import { CartButton } from "../CartButton";
 
 export function QuantityInput() {
   const [quantity, setQuantity] = React.useState(0);
@@ -48,13 +48,10 @@ export function QuantityInput() {
           +
         </button>
       </div>
-      <button
-        type="submit"
-        className={styles.cartButton}
+      <CartButton
+        variant="productCard"
         disabled={quantity > 10 || quantity === 0}
-      >
-        <ShoppingCart weight="fill" color="#fff" size={20} />
-      </button>
+      />
     </form>
   );
 }

@@ -1,6 +1,7 @@
 import coffeeDelivery from "../../assets/coffedelivery-logo.svg";
+import { CartButton } from "../CartButton";
 import styles from "./index.module.css";
-import { MapPin, ShoppingCart } from "@phosphor-icons/react";
+import { MapPin } from "@phosphor-icons/react";
 
 export function Header() {
   return (
@@ -13,9 +14,7 @@ export function Header() {
           <span className={styles.location}>
             <MapPin weight="fill" color="var(--purple)" /> Porto Alegre, RS
           </span>
-          <button>
-            <ShoppingCart weight="fill" color="var(--yellow-dark)" />
-          </button>
+          <CartButton variant="header" />
         </div>
       </header>
     </div>
