@@ -3,13 +3,16 @@ import styles from "./index.module.css";
 import { CartButton } from "../CartButton";
 import { RemoveCartButton } from "../RemoveCartButton";
 import { Plus, Minus } from "@phosphor-icons/react";
+import { cartContext } from "../../contexts/CartContext";
 
 type quantityInputProps = {
   variant: "productCard" | "cartItem";
+  coffeeId: string;
 };
 
-export function QuantityInput({ variant }: quantityInputProps) {
+export function QuantityInput({ variant, coffeeId }: quantityInputProps) {
   const [quantity, setQuantity] = React.useState(0);
+  const { addToCart, cart } = React.useContext(cartContext);
 
   function handleDecrement() {
     if (quantity > 0) {
@@ -25,6 +28,11 @@ export function QuantityInput({ variant }: quantityInputProps) {
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+
+    if (variant === "productCard" && quantity > 0) {
+      addToCart(coffeeId, quantity);
+      console.log(cart);
+    }
   }
 
   return (
