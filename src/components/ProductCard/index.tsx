@@ -27,7 +27,7 @@ export function ProductCard({ coffee }: { coffee: Product }) {
         <span className={styles.price}>
           R$ <strong>{formatCurrency(coffee.price)}</strong>
         </span>
-        <QuantityInput />
+        <QuantityInput variant="productCard" />
       </div>
     </div>
   );

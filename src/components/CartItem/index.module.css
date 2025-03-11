@@ -1,0 +1,37 @@
+.cartItem {
+  width: 100%;
+  display: flex;
+  padding: 0.25rem 0.5rem;
+  background-color: var(--base-card);
+  justify-content: space-between;
+  position: relative;
+
+  &::before {
+    content: "";
+    position: absolute;
+    display: block;
+    width: 20px;
+    height: 1px;
+    background-color: var(--base-button);
+    left: 0;
+    top: calc(100% + 24px);
+    width: 100%;
+  }
+}
+
+.contentWrapper {
+  display: flex;
+  gap: 1.25rem;
+  align-items: center;
+}
+
+.coffeeImage {
+  width: 64px;
+  height: 64px;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}

@@ -1,8 +1,14 @@
 import React from "react";
 import styles from "./index.module.css";
 import { CartButton } from "../CartButton";
+import { RemoveCartButton } from "../RemoveCartButton";
+import { Plus, Minus } from "@phosphor-icons/react";
 
-export function QuantityInput() {
+type quantityInputProps = {
+  variant: "productCard" | "cartItem";
+};
+
+export function QuantityInput({ variant }: quantityInputProps) {
   const [quantity, setQuantity] = React.useState(0);
 
   function handleDecrement() {
@@ -29,7 +35,9 @@ export function QuantityInput() {
           onClick={handleDecrement}
           className={styles.controlButton}
         >
-          -
+          <span>
+            <Minus size={10} color="var(--purple)" weight="bold" />
+          </span>
         </button>
         <input
           type="number"
@@ -45,13 +53,19 @@ export function QuantityInput() {
           onClick={handleIncrement}
           className={styles.controlButton}
         >
-          +
+          <span>
+            <Plus size={10} color="var(--purple)" weight="bold" />
+          </span>
         </button>
       </div>
-      <CartButton
-        variant="productCard"
-        disabled={quantity > 10 || quantity === 0}
-      />
+      {variant === "cartItem" && <RemoveCartButton />}
+
+      {variant === "productCard" && (
+        <CartButton
+          variant="productCard"
+          disabled={quantity > 10 || quantity === 0}
+        />
+      )}
     </form>
   );
 }

@@ -39,6 +39,18 @@ html {
   line-height: 130%;
 }
 
+input {
+  background-color: var(--base-input);
+  outline: none;
+  border: 1px solid var(--base-button);
+  border-radius: 4px;
+  font-size: 0.875rem;
+
+  &::placeholder {
+    color: var(--base-label);
+  }
+}
+
 h1,
 h2,
 h3,
