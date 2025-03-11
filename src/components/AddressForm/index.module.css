@@ -6,6 +6,14 @@
   input {
     height: 42px;
     padding: 12px;
+
+    &:focus {
+      border-color: var(--yellow-dark);
+
+      &::placeholder {
+        visibility: hidden;
+      }
+    }
   }
 }
 

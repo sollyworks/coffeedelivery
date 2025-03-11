@@ -1,5 +1,5 @@
 import { AddressForm } from "../../components/AddressForm";
-import { PaymentSelectButton } from "../../components/PaymentSelectButton";
+import { PaymentSelectButtons } from "../../components/PaymentSelectButtons";
 import styles from "./index.module.css";
 import { MapPinLine, CurrencyDollar } from "@phosphor-icons/react";
 
@@ -30,7 +30,7 @@ export function Cart() {
                 </p>
               </div>
             </div>
-            <PaymentSelectButton />
+            <PaymentSelectButtons />
           </div>
         </div>
         <div className={styles.orderSummaryContainer}>

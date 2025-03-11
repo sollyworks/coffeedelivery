@@ -4,7 +4,7 @@ import { CreditCard, Bank, Money } from "@phosphor-icons/react";
 
 type PaymentOption = "creditCard" | "debitCard" | "money";
 
-export function PaymentSelectButton() {
+export function PaymentSelectButtons() {
   const [selectedOption, setSelectedOption] =
     React.useState<PaymentOption | null>(null);
 
