@@ -1,0 +1,58 @@
+.addressForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.multiInputWrapper {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.cepInput {
+  width: 100%;
+  max-width: 200px;
+}
+
+.streetInput {
+  width: 100%;
+}
+
+.numberInput {
+  &::-webkit-inner-spin-button,
+  &::-webkit-outer-spin-button {
+    appearance: none;
+  }
+}
+
+.complementWrapper,
+.cityInput {
+  flex: 1;
+}
+
+.complementWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.complementInput {
+  width: 100%;
+}
+
+.complementLabel {
+  color: var(--base-label);
+  font-size: 0.75rem;
+  position: absolute;
+  right: 0.75rem;
+  font-style: italic;
+}
+
+.ufInput {
+  width: 100%;
+  max-width: 60px;
+}

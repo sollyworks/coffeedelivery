@@ -1,3 +1,4 @@
+import { AddressForm } from "../../components/AddressForm";
 import styles from "./index.module.css";
 import { MapPinLine, CurrencyDollar } from "@phosphor-icons/react";
 
@@ -15,6 +16,7 @@ export function Cart() {
                 <p>Informe o endereço onde deseja receber seu pedido</p>
               </div>
             </div>
+            <AddressForm />
           </div>
           <div className={styles.paymentWrapper}>
             <div className={styles.paymentInfo}>
