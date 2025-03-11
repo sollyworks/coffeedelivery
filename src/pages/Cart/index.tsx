@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 import { AddressForm } from "../../components/AddressForm";
 import { CartItem } from "../../components/CartItem";
 import { PaymentSelectButtons } from "../../components/PaymentSelectButtons";
@@ -54,7 +55,9 @@ export function Cart() {
                 <p>R$ 0,00</p>
               </div>
             </div>
-            <button className={styles.confirmButton}>Confirmar Pedido</button>
+            <NavLink to="/success">
+              <button className={styles.confirmButton}>Confirmar Pedido</button>
+            </NavLink>
           </div>
         </div>
       </div>
