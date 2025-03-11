@@ -36,6 +36,7 @@ html {
   background: var(--background);
   font-family: var(--family-roboto);
   color: var(--base-text);
+  line-height: 130%;
 }
 
 h1,
