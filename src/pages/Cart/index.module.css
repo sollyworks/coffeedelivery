@@ -51,6 +51,10 @@
   border-bottom-left-radius: 44px;
 }
 
+.cartItemsWrapper {
+  margin-bottom: 3.2rem;
+}
+
 .orderSummaryContainer {
   width: 100%;
   max-width: 448px;
