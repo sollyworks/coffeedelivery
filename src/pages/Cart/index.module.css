@@ -1,0 +1,101 @@
+.cartSection {
+  padding: 40px 0px;
+}
+
+.cartContainer {
+  display: flex;
+  gap: 2rem;
+}
+
+.orderInfoContainer {
+  width: 100%;
+  max-width: 640px;
+}
+
+.title {
+  font-size: 1.125rem;
+  margin-bottom: 1rem;
+}
+
+.addressWrapper,
+.paymentWrapper,
+.orderSummary {
+  background-color: var(--base-card);
+  padding: 2.5rem;
+  border-radius: 6px;
+  margin-bottom: 0.75rem;
+}
+
+.addressInfo,
+.paymentInfo {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.addressTitle,
+.paymentTitle {
+  margin-bottom: 2rem;
+  h4 {
+    font-size: 1rem;
+    font-family: var(--family-roboto);
+    font-weight: normal;
+  }
+
+  p {
+    font-size: 0.875rem;
+  }
+}
+
+.orderSummary {
+  border-top-right-radius: 44px;
+  border-bottom-left-radius: 44px;
+}
+
+.orderSummaryContainer {
+  width: 100%;
+  max-width: 448px;
+}
+
+.summaryWrapper {
+  margin-bottom: 1.5rem;
+}
+
+.totalItems,
+.delivery,
+.total {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+
+  p {
+    font-size: 1rem;
+    &:first-child {
+      font-size: 0.875rem;
+    }
+  }
+}
+
+.total > p {
+  font-size: 1.25rem;
+  font-weight: bold;
+
+  &:first-child {
+    font-size: 1.25rem;
+  }
+}
+
+.confirmButton {
+  width: 100%;
+  background-color: var(--yellow);
+  color: var(--white);
+  padding: 0 12px;
+  height: 48px;
+  font-size: 0.875rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  transition: background-color 0.2s;
+
+  &:hover {
+    background-color: var(--yellow-dark);
+  }
+}
