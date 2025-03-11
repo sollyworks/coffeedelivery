@@ -9,7 +9,7 @@ export function CartItem() {
         <img src={expresso} alt="" className={styles.coffeeImage} />
         <div className={styles.info}>
           <p>Expresso Tradicional</p>
-          <QuantityInput />
+          <QuantityInput variant="cartItem" />
         </div>
       </div>
       <span className={styles.price}>
