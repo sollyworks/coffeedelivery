@@ -1,11 +1,27 @@
+import React from "react";
 import { NavLink } from "react-router-dom";
 import { AddressForm } from "../../components/AddressForm";
 import { CartItem } from "../../components/CartItem";
 import { PaymentSelectButtons } from "../../components/PaymentSelectButtons";
 import styles from "./index.module.css";
 import { MapPinLine, CurrencyDollar } from "@phosphor-icons/react";
+import { cartContext } from "../../contexts/CartContext";
+import { coffees } from "../../mocks/coffees";
+import { Product } from "../../types/product";
 
 export function Cart() {
+  const { products } = React.useContext(cartContext);
+  const [cartProducts, setCardProducts] = React.useState<Product[]>([]);
+
+  React.useEffect(() => {
+    const findProducts = coffees.filter((product) => {
+      return products.find((item) => item.productId === product.id);
+    });
+
+    if (findProducts != null && findProducts.length > 0)
+      setCardProducts(findProducts);
+  }, [products]);
+
   return (
     <section className={styles.cartSection}>
       <div className={`container ${styles.cartContainer}`}>
@@ -39,7 +55,14 @@ export function Cart() {
           <h3 className={styles.title}>Cafés selecionados</h3>
           <div className={styles.orderSummary}>
             <div className={styles.cartItemsWrapper}>
-              <CartItem />
+              {cartProducts.map((product) => {
+                return (
+                  <>
+                    <CartItem key={product.id} product={product} />
+                    <div className={styles.line}></div>
+                  </>
+                );
+              })}
             </div>
             <div className={styles.summaryWrapper}>
               <div className={styles.totalItems}>
