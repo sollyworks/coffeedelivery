@@ -11,14 +11,12 @@ type quantityInputProps = {
 };
 
 export function QuantityInput({ variant, coffeeId }: quantityInputProps) {
-  const { products } = React.useContext(cartContext);
+  const { products, addToCart } = React.useContext(cartContext);
 
   const [quantity, setQuantity] = React.useState(() => {
     const existingItem = products.find((item) => item.productId === coffeeId);
     return existingItem ? existingItem.quantity : 0;
   });
-
-  const { addToCart } = React.useContext(cartContext);
 
   function handleDecrement() {
     if (quantity > 0) {
@@ -71,7 +69,7 @@ export function QuantityInput({ variant, coffeeId }: quantityInputProps) {
           </span>
         </button>
       </div>
-      {variant === "cartItem" && <RemoveCartButton />}
+      {variant === "cartItem" && <RemoveCartButton productId={coffeeId} />}
 
       {variant === "productCard" && (
         <CartButton

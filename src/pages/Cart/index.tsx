@@ -18,8 +18,7 @@ export function Cart() {
       return products.find((item) => item.productId === product.id);
     });
 
-    if (findProducts != null && findProducts.length > 0)
-      setCardProducts(findProducts);
+    setCardProducts(findProducts);
   }, [products]);
 
   return (
@@ -57,10 +56,10 @@ export function Cart() {
             <div className={styles.cartItemsWrapper}>
               {cartProducts.map((product) => {
                 return (
-                  <>
-                    <CartItem key={product.id} product={product} />
+                  <div key={product.id}>
+                    <CartItem product={product} />
                     <div className={styles.line}></div>
-                  </>
+                  </div>
                 );
               })}
             </div>
