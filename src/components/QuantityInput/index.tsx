@@ -11,7 +11,13 @@ type quantityInputProps = {
 };
 
 export function QuantityInput({ variant, coffeeId }: quantityInputProps) {
-  const { products, addToCart } = React.useContext(cartContext);
+  const {
+    products,
+    addToCart,
+    decreaseQuantity,
+    removeProduct,
+    increaseQuantity,
+  } = React.useContext(cartContext);
 
   const [quantity, setQuantity] = React.useState(() => {
     const existingItem = products.find((item) => item.productId === coffeeId);
@@ -21,12 +27,20 @@ export function QuantityInput({ variant, coffeeId }: quantityInputProps) {
   function handleDecrement() {
     if (quantity > 0) {
       setQuantity((prevQuantity) => prevQuantity - 1);
+      decreaseQuantity(coffeeId, 1);
+    }
+
+    if (quantity === 1) {
+      removeProduct(coffeeId);
     }
   }
 
   function handleIncrement() {
     if (quantity < 10) {
       setQuantity((prevQuantity) => prevQuantity + 1);
+      if (variant === "cartItem") {
+        increaseQuantity(coffeeId, 1);
+      }
     }
   }
 

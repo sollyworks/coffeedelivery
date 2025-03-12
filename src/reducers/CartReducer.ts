@@ -4,7 +4,11 @@ export interface Cart {
 }
 
 interface reducerAction {
-  type: "ADD_TO_CART" | "REMOVE_FROM_CART";
+  type:
+    | "ADD_TO_CART"
+    | "REMOVE_FROM_CART"
+    | "DECREASE_QUANTITY"
+    | "INCREASE_QUANTITY";
   payload: { productId: string; quantity: number };
 }
 
@@ -44,6 +48,34 @@ export function cartReducer(state: Cart, action: reducerAction) {
       const updatedProducts = state.products.filter(
         (product) => product.productId !== action.payload.productId
       );
+      return {
+        products: updatedProducts,
+        totalQuantity: calculateTotalQuantity(updatedProducts),
+      };
+    }
+    case "DECREASE_QUANTITY": {
+      const updatedProducts = state.products.map((product) => {
+        return product.productId === action.payload.productId
+          ? {
+              ...product,
+              quantity: product.quantity - action.payload.quantity,
+            }
+          : product;
+      });
+      return {
+        products: updatedProducts,
+        totalQuantity: calculateTotalQuantity(updatedProducts),
+      };
+    }
+    case "INCREASE_QUANTITY": {
+      const updatedProducts = state.products.map((product) => {
+        return product.productId === action.payload.productId
+          ? {
+              ...product,
+              quantity: product.quantity + action.payload.quantity,
+            }
+          : product;
+      });
       return {
         products: updatedProducts,
         totalQuantity: calculateTotalQuantity(updatedProducts),
