@@ -27,7 +27,7 @@ export function cartReducer(state: Cart, action: reducerAction) {
           return product.productId === action.payload.productId
             ? {
                 ...product,
-                quantity: action.payload.quantity,
+                quantity: product.quantity + action.payload.quantity,
               }
             : product;
         });
@@ -36,7 +36,6 @@ export function cartReducer(state: Cart, action: reducerAction) {
       }
 
       return {
-        ...state,
         products: updatedProducts,
         totalQuantity: calculateTotalQuantity(updatedProducts),
       };

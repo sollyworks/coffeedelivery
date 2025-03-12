@@ -8,6 +8,7 @@ import { MapPinLine, CurrencyDollar } from "@phosphor-icons/react";
 import { cartContext } from "../../contexts/CartContext";
 import { coffees } from "../../mocks/coffees";
 import { Product } from "../../types/product";
+import { formatCurrency } from "../../utils/formatCurrency";
 
 export function Cart() {
   const { products } = React.useContext(cartContext);
@@ -20,6 +21,19 @@ export function Cart() {
 
     setCardProducts(findProducts);
   }, [products]);
+
+  function calculateTotal() {
+    const total = products
+      .map((product) => {
+        const cartProduct = cartProducts.find(
+          (item) => item.id === product.productId
+        );
+        return cartProduct ? product.quantity * cartProduct.price : 0;
+      })
+      .reduce((total, price) => total + price, 0);
+
+    return formatCurrency(total);
+  }
 
   return (
     <section className={styles.cartSection}>
@@ -66,7 +80,7 @@ export function Cart() {
             <div className={styles.summaryWrapper}>
               <div className={styles.totalItems}>
                 <p>Total de itens</p>
-                <p>R$ 0,00</p>
+                <p>R$ {calculateTotal()}</p>
               </div>
               <div className={styles.delivery}>
                 <p>Entrega</p>
