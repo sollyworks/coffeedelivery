@@ -11,7 +11,7 @@ import { Product } from "../../types/product";
 import { formatCurrency } from "../../utils/formatCurrency";
 
 export function Cart() {
-  const { products } = React.useContext(cartContext);
+  const { products, deliveryFee } = React.useContext(cartContext);
   const [cartProducts, setCardProducts] = React.useState<Product[]>([]);
 
   React.useEffect(() => {
@@ -84,7 +84,7 @@ export function Cart() {
               </div>
               <div className={styles.delivery}>
                 <p>Entrega</p>
-                <p>R$ 0,00</p>
+                <p>R$ {formatCurrency(deliveryFee)}</p>
               </div>
               <div className={styles.total}>
                 <p>Total</p>

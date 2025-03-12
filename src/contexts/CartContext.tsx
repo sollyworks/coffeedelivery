@@ -6,11 +6,13 @@ interface CartContext extends Cart {
   removeProduct: (productId: string) => void;
   decreaseQuantity: (productId: string, quantity: number) => void;
   increaseQuantity: (productId: string, quantity: number) => void;
+  deliveryFee: 3.5;
 }
 
 export const cartContext = React.createContext<CartContext>({
   products: [],
   totalQuantity: 0,
+  deliveryFee: 3.5,
   addToCart: () => {},
   removeProduct: () => {},
   decreaseQuantity: () => {},
@@ -55,6 +57,7 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
     <cartContext.Provider
       value={{
         ...state,
+        deliveryFee: 3.5,
         addToCart,
         removeProduct,
         decreaseQuantity,
