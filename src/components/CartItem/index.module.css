@@ -4,19 +4,6 @@
   padding: 0.25rem 0.5rem;
   background-color: var(--base-card);
   justify-content: space-between;
-  position: relative;
-
-  &::before {
-    content: "";
-    position: absolute;
-    display: block;
-    width: 20px;
-    height: 1px;
-    background-color: var(--base-button);
-    left: 0;
-    top: calc(100% + 24px);
-    width: 100%;
-  }
 }
 
 .contentWrapper {

@@ -51,8 +51,11 @@
   border-bottom-left-radius: 44px;
 }
 
-.cartItemsWrapper {
-  margin-bottom: 3.2rem;
+.line {
+  background-color: var(--base-button);
+  height: 1px;
+  width: 100%;
+  margin: 24px 0px;
 }
 
 .orderSummaryContainer {

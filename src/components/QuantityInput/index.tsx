@@ -11,18 +11,36 @@ type quantityInputProps = {
 };
 
 export function QuantityInput({ variant, coffeeId }: quantityInputProps) {
-  const [quantity, setQuantity] = React.useState(0);
-  const { addToCart, cart } = React.useContext(cartContext);
+  const {
+    products,
+    addToCart,
+    decreaseQuantity,
+    removeProduct,
+    increaseQuantity,
+  } = React.useContext(cartContext);
+
+  const [quantity, setQuantity] = React.useState(() => {
+    const existingItem = products.find((item) => item.productId === coffeeId);
+    return existingItem ? existingItem.quantity : 0;
+  });
 
   function handleDecrement() {
     if (quantity > 0) {
       setQuantity((prevQuantity) => prevQuantity - 1);
+      decreaseQuantity(coffeeId, 1);
+    }
+
+    if (quantity === 1) {
+      removeProduct(coffeeId);
     }
   }
 
   function handleIncrement() {
     if (quantity < 10) {
       setQuantity((prevQuantity) => prevQuantity + 1);
+      if (variant === "cartItem") {
+        increaseQuantity(coffeeId, 1);
+      }
     }
   }
 
@@ -31,7 +49,6 @@ export function QuantityInput({ variant, coffeeId }: quantityInputProps) {
 
     if (variant === "productCard" && quantity > 0) {
       addToCart(coffeeId, quantity);
-      console.log(cart);
     }
   }
 
@@ -66,7 +83,7 @@ export function QuantityInput({ variant, coffeeId }: quantityInputProps) {
           </span>
         </button>
       </div>
-      {variant === "cartItem" && <RemoveCartButton />}
+      {variant === "cartItem" && <RemoveCartButton productId={coffeeId} />}
 
       {variant === "productCard" && (
         <CartButton

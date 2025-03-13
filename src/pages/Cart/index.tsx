@@ -1,11 +1,40 @@
+import React from "react";
 import { NavLink } from "react-router-dom";
 import { AddressForm } from "../../components/AddressForm";
 import { CartItem } from "../../components/CartItem";
 import { PaymentSelectButtons } from "../../components/PaymentSelectButtons";
 import styles from "./index.module.css";
 import { MapPinLine, CurrencyDollar } from "@phosphor-icons/react";
+import { cartContext } from "../../contexts/CartContext";
+import { coffees } from "../../mocks/coffees";
+import { Product } from "../../types/product";
+import { formatCurrency } from "../../utils/formatCurrency";
 
 export function Cart() {
+  const { products, deliveryFee, totalPrice } = React.useContext(cartContext);
+  const [cartProducts, setCardProducts] = React.useState<Product[]>([]);
+
+  React.useEffect(() => {
+    const findProducts = coffees.filter((product) => {
+      return products.find((item) => item.productId === product.id);
+    });
+
+    setCardProducts(findProducts);
+  }, [products]);
+
+  function calculateTotal() {
+    const total = products
+      .map((product) => {
+        const cartProduct = cartProducts.find(
+          (item) => item.id === product.productId
+        );
+        return cartProduct ? product.quantity * cartProduct.price : 0;
+      })
+      .reduce((total, price) => total + price, 0);
+
+    return formatCurrency(total);
+  }
+
   return (
     <section className={styles.cartSection}>
       <div className={`container ${styles.cartContainer}`}>
@@ -39,20 +68,27 @@ export function Cart() {
           <h3 className={styles.title}>Cafés selecionados</h3>
           <div className={styles.orderSummary}>
             <div className={styles.cartItemsWrapper}>
-              <CartItem />
+              {cartProducts.map((product) => {
+                return (
+                  <div key={product.id}>
+                    <CartItem product={product} />
+                    <div className={styles.line}></div>
+                  </div>
+                );
+              })}
             </div>
             <div className={styles.summaryWrapper}>
               <div className={styles.totalItems}>
                 <p>Total de itens</p>
-                <p>R$ 0,00</p>
+                <p>R$ {calculateTotal()}</p>
               </div>
               <div className={styles.delivery}>
                 <p>Entrega</p>
-                <p>R$ 0,00</p>
+                <p>R$ {formatCurrency(deliveryFee)}</p>
               </div>
               <div className={styles.total}>
                 <p>Total</p>
-                <p>R$ 0,00</p>
+                <p>R$ {formatCurrency(totalPrice)}</p>
               </div>
             </div>
             <NavLink to="/success">
