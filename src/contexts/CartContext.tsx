@@ -1,5 +1,6 @@
 import React from "react";
 import { Cart, cartReducer } from "../reducers/CartReducer";
+import { coffees } from "../mocks/coffees";
 
 interface CartContext extends Cart {
   addToCart: (productId: string, quantity: number) => void;
@@ -7,12 +8,14 @@ interface CartContext extends Cart {
   decreaseQuantity: (productId: string, quantity: number) => void;
   increaseQuantity: (productId: string, quantity: number) => void;
   deliveryFee: 3.5;
+  totalPrice: number;
 }
 
 export const cartContext = React.createContext<CartContext>({
   products: [],
   totalQuantity: 0,
   deliveryFee: 3.5,
+  totalPrice: 0,
   addToCart: () => {},
   removeProduct: () => {},
   decreaseQuantity: () => {},
@@ -20,6 +23,8 @@ export const cartContext = React.createContext<CartContext>({
 });
 
 export const CartProvider = ({ children }: { children: React.ReactNode }) => {
+  const [totalPrice, setTotalPrice] = React.useState(0);
+
   const [state, dispatch] = React.useReducer(cartReducer, {
     products: [],
     totalQuantity: 0,
@@ -53,11 +58,20 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
     });
   }
 
+  React.useEffect(() => {
+    const prices = state.products.reduce((total, product) => {
+      const coffee = coffees.find((c) => c.id === product.productId);
+      return total + (coffee?.price || 0) * product.quantity;
+    }, 0);
+    setTotalPrice(prices + 3.5);
+  }, [state.products]);
+
   return (
     <cartContext.Provider
       value={{
         ...state,
         deliveryFee: 3.5,
+        totalPrice,
         addToCart,
         removeProduct,
         decreaseQuantity,

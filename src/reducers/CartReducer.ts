@@ -8,7 +8,8 @@ interface reducerAction {
     | "ADD_TO_CART"
     | "REMOVE_FROM_CART"
     | "DECREASE_QUANTITY"
-    | "INCREASE_QUANTITY";
+    | "INCREASE_QUANTITY"
+    | "SUM_TOTAL_PRICE";
   payload: { productId: string; quantity: number };
 }
 
