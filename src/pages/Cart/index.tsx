@@ -1,5 +1,4 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
 import { AddressForm } from "../../components/AddressForm";
 import { CartItem } from "../../components/CartItem";
 import { PaymentSelectButtons } from "../../components/PaymentSelectButtons";
@@ -9,10 +8,17 @@ import { cartContext } from "../../contexts/CartContext";
 import { coffees } from "../../mocks/coffees";
 import { Product } from "../../types/product";
 import { formatCurrency } from "../../utils/formatCurrency";
+import { CheckoutContext } from "../../contexts/CheckoutContext";
+import { SubmitHandler, useFormContext } from "react-hook-form";
+import { AddressFormData } from "../../contexts/formContext";
+import { useNavigate } from "react-router-dom";
 
 export function Cart() {
   const { products, deliveryFee, totalPrice } = React.useContext(cartContext);
+  const { setAddress } = React.useContext(CheckoutContext);
+  const { handleSubmit } = useFormContext<AddressFormData>();
   const [cartProducts, setCardProducts] = React.useState<Product[]>([]);
+  const navigate = useNavigate();
 
   React.useEffect(() => {
     const findProducts = coffees.filter((product) => {
@@ -34,6 +40,11 @@ export function Cart() {
 
     return formatCurrency(total);
   }
+
+  const handleAddress: SubmitHandler<AddressFormData> = (data) => {
+    setAddress(data);
+    navigate("/success");
+  };
 
   return (
     <section className={styles.cartSection}>
@@ -91,9 +102,12 @@ export function Cart() {
                 <p>R$ {formatCurrency(totalPrice)}</p>
               </div>
             </div>
-            <NavLink to="/success">
-              <button className={styles.confirmButton}>Confirmar Pedido</button>
-            </NavLink>
+            <button
+              className={styles.confirmButton}
+              onClick={handleSubmit(handleAddress)}
+            >
+              Confirmar Pedido
+            </button>
           </div>
         </div>
       </div>

@@ -39,9 +39,7 @@ export function AddressForm() {
           placeholder="Número"
           className={styles.numberInput}
         />
-        {errors.numero && (
-          <p style={{ color: "red", fontSize: 12 }}>{errors.numero.message}</p>
-        )}
+
         <div className={styles.complementWrapper}>
           <input
             {...register("complemento")}
@@ -49,10 +47,14 @@ export function AddressForm() {
             placeholder="Complemento"
             className={styles.complementInput}
           />
-
           <span className={styles.complementLabel}>Opcional</span>
         </div>
       </div>
+      {errors.numero && (
+        <p style={{ color: "red", fontSize: 12, marginTop: -12 }}>
+          {errors.numero.message}
+        </p>
+      )}
       <div className={styles.multiInputWrapper}>
         <input
           {...register("cidade")}

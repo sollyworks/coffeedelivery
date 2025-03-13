@@ -1,17 +1,10 @@
 import React from "react";
 import { checkoutReducer } from "../reducers/checkoutReducer";
+import { AddressFormData } from "../contexts/formContext";
 
 export interface CheckoutContextType {
-  address: {
-    cep: string;
-    rua: string;
-    bairro: string;
-    cidade: string;
-    estado: string;
-    complemento?: string;
-    numero: string;
-  };
-  setAddress: (address: CheckoutContextType["address"]) => void;
+  address: AddressFormData;
+  setAddress: (address: AddressFormData) => void;
 }
 
 export const CheckoutContext = React.createContext<CheckoutContextType>({
@@ -49,8 +42,6 @@ export function useCheckoutContext({
       type: "SET_ADDRESS",
       payload: address,
     });
-
-    console.log(address);
   }
 
   return (
