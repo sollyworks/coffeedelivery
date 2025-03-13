@@ -1,8 +1,19 @@
+import React from "react";
 import { MapPin, Timer, CurrencyDollar } from "@phosphor-icons/react";
 import styles from "./index.module.css";
 import successPageIllustration from "../../assets/successPageIllustration.svg";
+import { CheckoutContext } from "../../contexts/CheckoutContext";
+
+const paymentType = {
+  creditCard: "Cartão de Crédito",
+  debitCard: "Cartão de Débito",
+  money: "Dinheiro",
+};
 
 export function SuccessPage() {
+  const { checkout } = React.useContext(CheckoutContext);
+  const { rua, cidade, numero, estado, paymentMethod } = checkout;
+
   return (
     <section className={styles.successSection}>
       <div className={`container flexContainer ${styles.successContainer}`}>
@@ -19,9 +30,14 @@ export function SuccessPage() {
                 </div>
                 <div>
                   <p>
-                    Entrega em <strong>Rua João Daniel Martinelli, 102</strong>
+                    Entrega em{" "}
+                    <strong>
+                      Rua {rua}, {numero}
+                    </strong>
                   </p>
-                  <p>Farrapos - Porto Alegre, RS</p>
+                  <p>
+                    {cidade} - {estado}
+                  </p>
                 </div>
               </li>
 
@@ -44,7 +60,7 @@ export function SuccessPage() {
                 <div>
                   <p>Pagamento na entrega</p>
                   <p>
-                    <strong>Cartão de Crédito</strong>
+                    <strong>{paymentType[paymentMethod]}</strong>
                   </p>
                 </div>
               </li>

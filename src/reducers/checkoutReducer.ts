@@ -1,20 +1,20 @@
 import { CheckoutContextType } from "../contexts/CheckoutContext";
 
 type CheckoutState = {
-  address: CheckoutContextType["address"];
+  checkout: CheckoutContextType["checkout"];
 };
 
 type CheckoutAction = {
-  type: "SET_ADDRESS";
-  payload: CheckoutContextType["address"];
+  type: "SET_CHECKOUT";
+  payload: CheckoutContextType["checkout"];
 };
 
 export function checkoutReducer(state: CheckoutState, action: CheckoutAction) {
   switch (action.type) {
-    case "SET_ADDRESS":
+    case "SET_CHECKOUT":
       return {
         ...state,
-        address: action.payload,
+        checkout: action.payload,
       };
     default:
       return state;

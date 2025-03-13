@@ -3,49 +3,45 @@ import { checkoutReducer } from "../reducers/checkoutReducer";
 import { AddressFormData } from "../contexts/formContext";
 
 export interface CheckoutContextType {
-  address: AddressFormData;
-  setAddress: (address: AddressFormData) => void;
+  checkout: AddressFormData;
+  setCheckout: (checkout: CheckoutContextType["checkout"]) => void;
 }
 
 export const CheckoutContext = React.createContext<CheckoutContextType>({
-  address: {
+  checkout: {
     cep: "",
     rua: "",
-    bairro: "",
     cidade: "",
     estado: "",
     complemento: "",
     numero: "",
+    paymentMethod: "creditCard",
   },
-  setAddress: () => {},
+  setCheckout: () => {},
 });
 
-export function useCheckoutContext({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export function CheckoutProvider({ children }: { children: React.ReactNode }) {
   const [state, dispatch] = React.useReducer(checkoutReducer, {
-    address: {
+    checkout: {
       cep: "",
       rua: "",
-      bairro: "",
       cidade: "",
       estado: "",
       complemento: "",
       numero: "",
+      paymentMethod: "creditCard",
     },
   });
 
-  function setAddress(address: CheckoutContextType["address"]) {
+  function setCheckout(checkout: CheckoutContextType["checkout"]) {
     dispatch({
-      type: "SET_ADDRESS",
-      payload: address,
+      type: "SET_CHECKOUT",
+      payload: checkout,
     });
   }
 
   return (
-    <CheckoutContext.Provider value={{ ...state, setAddress }}>
+    <CheckoutContext.Provider value={{ ...state, setCheckout }}>
       {children}
     </CheckoutContext.Provider>
   );

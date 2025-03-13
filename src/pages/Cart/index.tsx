@@ -15,7 +15,7 @@ import { useNavigate } from "react-router-dom";
 
 export function Cart() {
   const { products, deliveryFee, totalPrice } = React.useContext(cartContext);
-  const { setAddress } = React.useContext(CheckoutContext);
+  const { setCheckout } = React.useContext(CheckoutContext);
   const { handleSubmit } = useFormContext<AddressFormData>();
   const [cartProducts, setCardProducts] = React.useState<Product[]>([]);
   const navigate = useNavigate();
@@ -42,7 +42,7 @@ export function Cart() {
   }
 
   const handleAddress: SubmitHandler<AddressFormData> = (data) => {
-    setAddress(data);
+    setCheckout(data);
     navigate("/success");
   };
 
