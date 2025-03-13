@@ -102,7 +102,7 @@
   text-transform: uppercase;
   transition: background-color 0.2s;
 
-  &:hover {
+  &:not(:disabled):hover {
     background-color: var(--yellow-dark);
   }
 }
